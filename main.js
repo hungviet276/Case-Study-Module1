@@ -4,11 +4,12 @@
     const ORIENTATION_RIGHT = "right";
     const ORIENTATION_DOWN = "down";
     const ORIENTATION_UP = "up";
+    const ORIENTATION_CENTER = "center";
     const MAN_WIDTH = 256;
     const MAN_HEIGHT = 256;
     const DEFAULT_MAN_X_POSITION = 0;
     const DEFAULT_MAN_Y_POSITION = 0;
-    const DEFAULT_MAN_ORIENTATION = ORIENTATION_RIGHT;
+    const DEFAULT_MAN_ORIENTATION = ORIENTATION_CENTER;
     const DEFAULT_MAN_SPEED = 20;
 
     let canvas = document.getElementById('myCanvas');
@@ -45,11 +46,21 @@
             }
         }
     }
+    //Tao Virut
+    let virusSrc = "./image/virus.png";
+    let coinSrc = "./image/coin.png";
+    let virus = new Object(200,2,virusSrc);
+    let coin = new Object(300,20,coinSrc);
+
 
     //Update Game
     function update() {
         clear();
         man.drawMan();
+        virus.update();
+        virus.move();
+        coin.update();
+        coin.moveEclipse();
     }
 
 

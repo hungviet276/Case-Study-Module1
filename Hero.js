@@ -7,7 +7,6 @@
         this.y =y;
         this.orientation = DEFAULT_MAN_ORIENTATION;
         this.image = new Image();
-        // this.image.src = "./image/" + this.orientation +".png";
         this.drawMan = function () {
             this.image.src = "./image/" + this.orientation +".png";
             ctx.drawImage(this.image,this.x,this.y);
