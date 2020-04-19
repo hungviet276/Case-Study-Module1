@@ -12,12 +12,16 @@
     const DEFAULT_MAN_ORIENTATION = ORIENTATION_CENTER;
     const DEFAULT_MAN_SPEED = 30;
 
+
     let canvas = document.getElementById('myCanvas');
     let ctx = canvas.getContext("2d");
     interval =setInterval(update,20);
     function clear(){
         ctx.clearRect(0,0,GAMEBOARD_WIDTH,GAMEBOARD_HEIGHT);
     }
+    //Nhạc nền game
+    let snd = new Audio("./audio/game.mp3");
+    snd.play();
     // Tạo nhân vật Man
     let man = new Man(100,100,0,0);
 
