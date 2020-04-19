@@ -4,7 +4,7 @@
     this.left = x + 25;
     this.top = y +25;
     this.angle =0;
-    this.moveAngle = 1;
+    this.moveAngle = 0.5;
     this.speed = 1;
     this.update =function () {
         ctx.save();
@@ -23,7 +23,7 @@
 
 
         this.move = function () {
-        this.y += 3;
+        this.y += 0.7;
         if (this.y >250){this.y = 2;}
 
         }

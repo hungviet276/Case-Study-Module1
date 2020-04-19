@@ -10,7 +10,7 @@
     const DEFAULT_MAN_X_POSITION = 0;
     const DEFAULT_MAN_Y_POSITION = 0;
     const DEFAULT_MAN_ORIENTATION = ORIENTATION_CENTER;
-    const DEFAULT_MAN_SPEED = 20;
+    const DEFAULT_MAN_SPEED = 30;
 
     let canvas = document.getElementById('myCanvas');
     let ctx = canvas.getContext("2d");
@@ -46,21 +46,50 @@
             }
         }
     }
-    //Tao Virut
+
+    //RANDOM vị trí x ,y
+    function myRandom(number){
+        return Math.floor(Math.random() * (number));
+    }
+    //Tạo Virut và Coin
     let virusSrc = "./image/virus.png";
     let coinSrc = "./image/coin.png";
-    let virus = new Object(200,2,virusSrc);
-    let coin = new Object(300,20,coinSrc);
+    let arrVirus = [];
+    let arrVirus2 = [];
+    let arrCoin = [];
+    function createObj(level,arr,src){
+        let x= 80;
+        let y;
+        for (let i=0;i<level;i++){
+            y  = myRandom(400);
+            arr.push(new Object(x,y,src));
+            x+=50;
+        }
+    }
+    createObj(8,arrVirus,virusSrc);
+    createObj(5,arrCoin,coinSrc);
+    createObj(5,arrVirus2,virusSrc);
+
+
+    //Tao Princess
+    let princess = new Princess(1000,450);
 
 
     //Update Game
     function update() {
         clear();
         man.drawMan();
-        virus.update();
-        virus.move();
-        coin.update();
-        coin.moveEclipse();
+        princess.draw();
+        for (let i =0; i <8;i++){
+            arrVirus[i].update();
+            arrVirus[i].move();
+        }
+        for (let j = 0; j <5; j++){
+            arrCoin[j].update();
+            arrCoin[j].moveEclipse();
+            arrVirus2[j].update();
+            arrVirus2[j].moveEclipse();
+        }
     }
 
 
