@@ -1,5 +1,5 @@
 
-    let Man = function (width,height,x,y) {
+    let Horse = function (width, height, x, y) {
         this.speed = DEFAULT_MAN_SPEED;
         this.width = width;
         this.height = height;

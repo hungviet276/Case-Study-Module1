@@ -1,11 +1,11 @@
-    let Object = function (x, y, src) {
+    let Object = function (x, y, src,speed) {
     this.x = x;
     this.y = y;
     this.left = x +24;
     this.top = y +24;
     this.angle =0;
-    this.moveAngle = 0.5;
-    this.speed = 1;
+    this.moveAngle = 1;
+    this.speed = speed;
     this.update =function () {
         let image = new Image();
         image.src =src;
@@ -22,8 +22,8 @@
 
 
         this.move = function () {
-        this.y += 1;
-        if (this.y >450){this.y = 2;}
+        this.y += this.speed;
+        if (this.y >490){this.y = 2;}
         this.left = this.x +24;
         this.top = this.y +24;
 

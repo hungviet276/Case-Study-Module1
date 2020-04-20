@@ -3,14 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Game Giải Cứu</title>
-</head>
-<body onkeydown="moveMan(event)">
+    <style>
+        main{
+            display:inline-block;
+        }
+        section {
+            display: inline-block;
+            vertical-align: top;
+        }
 
-<canvas id="myCanvas" width="1100" height="550"></canvas>
+
+    </style>
+</head>
+<body onkeydown="moveMan(event)" style="width:1250px;height: 580px ">
+<main class="canvas" style="height: 570px; width: 1050px"><canvas id="myCanvas" width="1050" height="570"></canvas></main>
+<section class="board" style="width: 150px; height: 550px">
+    <h4> <span style="color: royalblue">GAME GIẢI CỨU</span></h4>
+    <hr>
+    <h4>Độ khó:</h4><button type="button" value="1" onclick="speed(this.value)">Dễ</button>  <button type="button" value="4" onclick="speed(this.value)">Khó</button>
+    <hr>
+    <div ><h4 STYLE="color: #ff080e">POINT:</h4> <span style="color: #ff080e; size: 100px"> <p id="point" ></p></span></div>
+    <hr>
+    <button type="button" onclick="playGame()">PLAY</button>
+    <button type="button" onclick="reset()">RESET</button>
+    <hr>
+    <h4><span style="size: 20px; color: coral">- Dùng phím mỗi tên để di chuyển chú ngựa né tránh virus tìm đường giải cứu công chúa trong ngục.</span></h4>
+    <h4><span style="size: 20px; color: coral">- Ăn tiền vàng để tăng point</span></h4>
+
+</section>
 <audio id="myAudio" src="./audio/game.mp3"></audio>
 
 
-<script src="Man.js"></script>
+<script src="Horse.js"></script>
 <script src="Object.js"></script>
 <script src="Princess.js"></script>
 <script src="main.js"></script>

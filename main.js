@@ -1,34 +1,42 @@
-    const GAMEBOARD_WIDTH = 1200;
-    const GAMEBOARD_HEIGHT = 540;
+    const GAMEBOARD_WIDTH = 1050;
+    const GAMEBOARD_HEIGHT = 570;
     const ORIENTATION_LEFT = "left";
     const ORIENTATION_RIGHT = "right";
     const ORIENTATION_DOWN = "down";
     const ORIENTATION_UP = "up";
     const ORIENTATION_CENTER = "center";
-    const MAN_WIDTH = 256;
-    const MAN_HEIGHT = 256;
-    const DEFAULT_MAN_X_POSITION = 0;
-    const DEFAULT_MAN_Y_POSITION = 0;
     const DEFAULT_MAN_ORIENTATION = ORIENTATION_CENTER;
     const DEFAULT_MAN_SPEED = 30;
+    let speedDefault =1;
+    let interval;
 
     //Tạo canvas
     let canvas = document.getElementById('myCanvas');
     canvas.style.background = "url('./image/background.jpg')";
     let ctx = canvas.getContext("2d");
-    interval =setInterval(update,20);
     function clear(){
         ctx.clearRect(0,0,GAMEBOARD_WIDTH,GAMEBOARD_HEIGHT);
     }
 
     //Nhạc nền game
     let snd = new Audio("./audio/game.mp3");
-    // snd.play();
 
-    // Tạo nhân vật Man
-    let man = new Man(100,100,0,0);
 
-    // Hàm dịch chuyển Man
+    // Tính điểm
+    let point =0;
+    function displayPoint() {
+    document.getElementById('point').innerHTML = point;
+    }
+
+
+
+    // Tạo nhân vật Horse
+    let horse = new Horse(100,100,0,0);
+
+    //Tao Princess
+    let princess = new Princess(970,410);
+
+    // Hàm dịch chuyển Horse
     function moveMan(event) {
         let orientation = 0;
         switch (event.which) {
@@ -46,10 +54,10 @@
                 break;
         }
         if (orientation) {
-            if (man.orientation != orientation) {
-                man.orientation = orientation;
+            if (horse.orientation != orientation) {
+                horse.orientation = orientation;
             } else {
-                man.move();
+                horse.move();
             }
         }
     }
@@ -64,29 +72,20 @@
     let arrVirus = [];
     let arrVirus2 = [];
     let arrCoin = [];
-    function createObj(level,arr,src){
+    function createObj(level,arr,src,speed){
         let x= 100;
         let y;
         for (let i=0;i<level;i++){
             y  = myRandom(445);
-            arr.push(new Object(x,y,src));
-            x+=110;
+            arr.push(new Object(x,y,src,speed));
+            x+=105;
         }
     }
-    createObj(8,arrVirus,virusSrc);
-    createObj(7,arrCoin,coinSrc);
-    createObj(7,arrVirus2,virusSrc);
-
-
-    //Tao Princess
-    let princess = new Princess(1000,450);
 
     //Test va chạm
-    let point =0;
-
-    function testMan(arr) {
+    function testCrack(arr) {
         for (let i= 0; i < arr.length ;i++){
-            if (arr[i].left > man.left && arr[i].left < man.right && arr[i].top > man.top && arr[i].top<man.bottom ){
+            if (arr[i].left > horse.left && arr[i].left < horse.right && arr[i].top > horse.top && arr[i].top<horse.bottom ){
                if (arr==arrVirus || arr== arrVirus2){alert("GAME OVER");}
                if (arr== arrCoin){point++;arr[i].destroy();}
             }
@@ -94,11 +93,10 @@
 
     }
 
-
     //Update Game
     function update() {
         clear();
-        man.drawMan();
+        horse.drawMan();
         princess.draw();
         for (let i =0; i <8;i++){
             arrVirus[i].update();
@@ -110,9 +108,10 @@
             arrVirus2[j].update();
             arrVirus2[j].moveEclipse();
         }
-        testMan(arrVirus);
-        testMan(arrVirus2);
-        testMan(arrCoin);
+        testCrack(arrVirus);
+        testCrack(arrVirus2);
+        testCrack(arrCoin);
+        displayPoint();
     }
 
 
