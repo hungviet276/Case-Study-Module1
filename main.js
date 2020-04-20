@@ -12,20 +12,23 @@
     const DEFAULT_MAN_ORIENTATION = ORIENTATION_CENTER;
     const DEFAULT_MAN_SPEED = 30;
 
-
+    //Tạo canvas
     let canvas = document.getElementById('myCanvas');
+    canvas.style.background = "url('./image/background.jpg')";
     let ctx = canvas.getContext("2d");
     interval =setInterval(update,20);
     function clear(){
         ctx.clearRect(0,0,GAMEBOARD_WIDTH,GAMEBOARD_HEIGHT);
     }
+
     //Nhạc nền game
     let snd = new Audio("./audio/game.mp3");
-    snd.play();
+    // snd.play();
+
     // Tạo nhân vật Man
     let man = new Man(100,100,0,0);
 
-
+    // Hàm dịch chuyển Man
     function moveMan(event) {
         let orientation = 0;
         switch (event.which) {
@@ -62,21 +65,34 @@
     let arrVirus2 = [];
     let arrCoin = [];
     function createObj(level,arr,src){
-        let x= 80;
+        let x= 100;
         let y;
         for (let i=0;i<level;i++){
-            y  = myRandom(400);
+            y  = myRandom(445);
             arr.push(new Object(x,y,src));
-            x+=50;
+            x+=110;
         }
     }
     createObj(8,arrVirus,virusSrc);
-    createObj(5,arrCoin,coinSrc);
-    createObj(5,arrVirus2,virusSrc);
+    createObj(7,arrCoin,coinSrc);
+    createObj(7,arrVirus2,virusSrc);
 
 
     //Tao Princess
     let princess = new Princess(1000,450);
+
+    //Test va chạm
+    let point =0;
+
+    function testMan(arr) {
+        for (let i= 0; i < arr.length ;i++){
+            if (arr[i].left > man.left && arr[i].left < man.right && arr[i].top > man.top && arr[i].top<man.bottom ){
+               if (arr==arrVirus || arr== arrVirus2){alert("GAME OVER");}
+               if (arr== arrCoin){point++;arr[i].destroy();}
+            }
+        }
+
+    }
 
 
     //Update Game
@@ -88,12 +104,15 @@
             arrVirus[i].update();
             arrVirus[i].move();
         }
-        for (let j = 0; j <5; j++){
+        for (let j = 0; j <7; j++){
             arrCoin[j].update();
             arrCoin[j].moveEclipse();
             arrVirus2[j].update();
             arrVirus2[j].moveEclipse();
         }
+        testMan(arrVirus);
+        testMan(arrVirus2);
+        testMan(arrCoin);
     }
 
 
