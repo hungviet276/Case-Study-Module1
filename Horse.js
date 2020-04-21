@@ -6,8 +6,8 @@
         this.x = x;
         this.y =y;
         this.left = x;
-        this.right = y +70;
-        this.top = x;
+        this.right = x +70;
+        this.top = y;
         this.bottom = y +50;
         this.orientation = DEFAULT_MAN_ORIENTATION;
         this.image = new Image();
@@ -31,6 +31,10 @@
                     break;
 
             }
+            if (this.y > 510){this.y =510;}
+            if (this.x > 990){this.x=990;}
+            if (this.x <0){this.x =0;}
+            if (this.y <0){this.y =0;}
             this.left = this.x;
             this.right = this.x + 70;
             this.top = this.y;

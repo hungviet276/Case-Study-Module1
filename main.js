@@ -17,6 +17,8 @@
     function clear(){
         ctx.clearRect(0,0,GAMEBOARD_WIDTH,GAMEBOARD_HEIGHT);
     }
+    let image = new Image();
+
 
     //Nhạc nền game
     let snd = new Audio("./audio/game.mp3");
@@ -62,6 +64,7 @@
         }
     }
 
+
     //RANDOM vị trí x ,y
     function myRandom(number){
         return Math.floor(Math.random() * (number));
@@ -86,10 +89,29 @@
     function testCrack(arr) {
         for (let i= 0; i < arr.length ;i++){
             if (arr[i].left > horse.left && arr[i].left < horse.right && arr[i].top > horse.top && arr[i].top<horse.bottom ){
-               if (arr==arrVirus || arr== arrVirus2){alert("GAME OVER");}
+               if (arr==arrVirus || arr== arrVirus2){clearInterval(interval);ctx.font = "90px Georgia";
+                    ctx.fillStyle = "red";
+                   ctx.fillText("GAME OVER", 280, 250);}
                if (arr== arrCoin){point++;arr[i].destroy();}
             }
         }
+
+    }
+    function crackPrincess() {
+        if ((horse.right>princess.left&&horse.right<princess.right&&horse.top>princess.top&horse.top<princess.bottom)||
+            (horse.bottom>princess.top&&horse.bottom<princess.bottom&&horse.left>princess.left&&horse.left<princess.right)){
+            princess.image.src = "./image/princess.png";
+            image.src = "./image/text.png";
+            ctx.drawImage(image,950,300);
+            horse.x =900;
+            horse.y =460;
+            ctx.font = "90px Georgia";
+            ctx.fillStyle = "red";
+            ctx.fillText("YOU WIN !!", 280, 250);
+
+
+        }
+
 
     }
 
@@ -111,6 +133,7 @@
         testCrack(arrVirus);
         testCrack(arrVirus2);
         testCrack(arrCoin);
+        crackPrincess();
         displayPoint();
     }
 

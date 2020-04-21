@@ -1,9 +1,10 @@
 let Princess =function (x,y) {
     this.x = x;
     this.y = y;
-    this.left = x + 50;
-    this.top = y;
-
+    this.left = x;
+    this.right = x +80;
+    this.top = y+20;
+    this.bottom =y +100;
     this.image = new Image();
     this.image.src = "./image/jail.png";
     this.draw = function () {

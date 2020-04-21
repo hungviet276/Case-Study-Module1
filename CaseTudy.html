@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>Game Giải Cứu</title>
     <style>
-        main{
-            display:inline-block;
+        main {
+            display: inline-block;
         }
+
         section {
             display: inline-block;
             vertical-align: top;
@@ -16,18 +17,24 @@
     </style>
 </head>
 <body onkeydown="moveMan(event)" style="width:1250px;height: 580px ">
-<main class="canvas" style="height: 570px; width: 1050px"><canvas id="myCanvas" width="1050" height="570"></canvas></main>
+<main class="canvas" style="height: 570px; width: 1050px">
+    <canvas height="570" id="myCanvas" width="1050"></canvas>
+</main>
 <section class="board" style="width: 150px; height: 550px">
-    <h4> <span style="color: royalblue">GAME GIẢI CỨU</span></h4>
+    <h4><span style="color: royalblue">GAME GIẢI CỨU CÔNG CHÚA</span></h4>
     <hr>
-    <h4>Độ khó:</h4><button type="button" value="1" onclick="speed(this.value)">Dễ</button>  <button type="button" value="4" onclick="speed(this.value)">Khó</button>
+    <h4>Độ khó:</h4>
+    <button onclick="speed(this.value)" type="button" value="1">Dễ</button>
+    <button onclick="speed(this.value)" type="button" value="4">Khó</button>
     <hr>
-    <div ><h4 STYLE="color: #ff080e">POINT:</h4> <span style="color: #ff080e; size: 100px"> <p id="point" ></p></span></div>
+    <div><h4 STYLE="color: #ff080e">POINT:</h4> <span style="color: #ff080e; size: 100px"> <p id="point"></p></span>
+    </div>
     <hr>
-    <button type="button" onclick="playGame()">PLAY</button>
-    <button type="button" onclick="reset()">RESET</button>
+    <button onclick="playGame()" type="button">PLAY</button>
+    <button onclick="reset()" type="button">RESET</button>
     <hr>
-    <h4><span style="size: 20px; color: coral">- Dùng phím mỗi tên để di chuyển chú ngựa né tránh virus tìm đường giải cứu công chúa trong ngục.</span></h4>
+    <h4><span style="size: 20px; color: coral">- Dùng phím mỗi tên để di chuyển chú ngựa né tránh virus tìm đường giải cứu công chúa trong ngục.</span>
+    </h4>
     <h4><span style="size: 20px; color: coral">- Ăn tiền vàng để tăng point</span></h4>
 
 </section>
@@ -39,8 +46,6 @@
 <script src="Princess.js"></script>
 <script src="main.js"></script>
 <script src="GameBoard.js"></script>
-
-
 
 
 </body>

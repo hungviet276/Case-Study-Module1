@@ -10,17 +10,14 @@ let GameBoard = function () {
         speedDefault = Number(number);
     }
     this.reset = function () {
-        clearInterval(interval);
-        clear();
-
-
+        location.reload();
+    }
     }
 
-    }
     let gameBoard = new GameBoard();
     function playGame(){
         gameBoard.start()
-        snd.play();
+        // snd.play();
     }
     function speed(number) {
         gameBoard.difficult(number);
