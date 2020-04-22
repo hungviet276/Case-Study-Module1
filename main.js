@@ -14,6 +14,11 @@ let interval;
 let canvas = document.getElementById('myCanvas');
 canvas.style.background = "url('./image/background.jpg')";
 let ctx = canvas.getContext("2d");
+ctx.font = "80px Georgia";
+ctx.fillStyle = "#a60dff";
+ctx.fillText("Game Giải Cứu Công Chúa", 80, 190);
+
+
 
 function clear() {
     ctx.clearRect(0, 0, GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
